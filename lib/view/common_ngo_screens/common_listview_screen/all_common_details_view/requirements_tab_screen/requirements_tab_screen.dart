@@ -97,16 +97,32 @@ class RequirementsTabScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                       contentPadding: const EdgeInsets.all(10),
-                                      value: (value.isCheckedList != null &&
-                                              index <
-                                                  value.isCheckedList.length)
-                                          ? value.isCheckedList[index]
+                                      // value: (value.isCheckedList != null &&
+                                      //         index <
+                                      //             value.isCheckedList.length)
+                                      //     ? value.isCheckedList[index]
+                                      //     : false,
+                                      value: value.selecteditems.isNotEmpty
+                                          ? value.selecteditems
+                                              .firstWhere(
+                                                (element) =>
+                                                    element.id ==
+                                                    value.detailsList!
+                                                        .requirement[index].id,
+                                                orElse: () => SelectedItem(
+                                                    count: 0,
+                                                    perUnit: 0,
+                                                    id: '',
+                                                    checked: false),
+                                              )
+                                              .checked
                                           : false,
                                       onChanged: (data) {
                                         value.onChange(
-                                          data,
-                                          index,
-                                        );
+                                            data,
+                                            index,
+                                            value.detailsList!
+                                                .requirement[index].id);
                                       },
                                       title: Row(
                                         children: [
@@ -223,7 +239,13 @@ class RequirementsTabScreen extends StatelessWidget {
                                                                     count) ??
                                                             0; // Convert string to int or default to 0
                                                         value.onChangeamount(
-                                                            parsedCount, index);
+                                                            parsedCount,
+                                                            index,
+                                                            value
+                                                                .detailsList!
+                                                                .requirement[
+                                                                    index]
+                                                                .id);
                                                       },
                                                       keyboardType:
                                                           TextInputType.number,
@@ -335,7 +357,7 @@ class RequirementsTabScreen extends StatelessWidget {
                                           needsControllerList:
                                               details.needsControllerList,
                                         );
-                                        payment.setOptions(value.totalAmount);
+                                        payment.setOptions(details.totalAmount);
                                         // }
                                       },
                                       style: ElevatedButton.styleFrom(
