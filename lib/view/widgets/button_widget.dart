@@ -25,7 +25,9 @@ class ButtonWidget extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          foregroundColor: AppColors.kBlue,
           backgroundColor: AppColors.kBlue,
+          surfaceTintColor: Colors.amber,
           elevation: 10,
           shape: shape,
         ),

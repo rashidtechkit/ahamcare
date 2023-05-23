@@ -19,9 +19,9 @@ class SignUpController extends ChangeNotifier {
   SignupServices signupServices = SignupServices();
   FlutterSecureStorage storage = const FlutterSecureStorage();
   bool isLoading = false;
-  ProfileModel? model;
-  List<ProfileModel> userList = [];
-  SignupModel? user;
+  // ProfileModel? model;
+  ProfileModel? profiledetail;
+  // SignupModel? user;
 
   Future<void> signupUser(BuildContext context) async {
     isLoading = true;
@@ -54,21 +54,21 @@ class SignUpController extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void getUserProfile(context) async {
-  //   isLoading = true;
-  //   notifyListeners();
-  //   await ProfileService().profileService(context, model!.id).then((value) {
-  //     if (value != null) {
-  //       userList = value;
-  //       notifyListeners();
-  //     } else {
-  //       isLoading = false;
-  //       notifyListeners();
-  //     }
-  //   });
-  //   isLoading = false;
-  //   notifyListeners();
-  // }
+  void getUserProfile(context) async {
+    isLoading = true;
+    notifyListeners();
+    await ProfileService().profileService(context).then((value) {
+      if (value != null) {
+        profiledetail = value;
+        notifyListeners();
+      } else {
+        isLoading = false;
+        notifyListeners();
+      }
+    });
+    isLoading = false;
+    notifyListeners();
+  }
 
   void disposeTextfield() {
     name.clear();

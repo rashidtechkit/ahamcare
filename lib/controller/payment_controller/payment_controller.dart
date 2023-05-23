@@ -10,19 +10,11 @@ class PaymentController extends ChangeNotifier {
 
   Map<String, dynamic> options = {};
 
-  // void setTotalAmount(amount, List<String> productIds) {
-  //   final total = "${amount * 100}";
-  //   final amountPayable = total.toString();
-  //   setOptions(amountPayable);
-  //  // products = productIds.map((e) => Product(id: e)).toList();
-
-  //   notifyListeners();
-  // }
-
   void setOptions(amountPayable) async {
     options = {
       // 'key': 'rzp_live_roUrAjz5ezEQKH',
-      'key': 'rzp_test_boWotLKxahxvUM',
+      // 'key': 'rzp_test_boWotLKxahxvUM',
+      'key': 'rzp_test_9djO1gFo5qkqVq',
       'amount': amountPayable * 100,
       'name': 'Aahamcare',
       'description': 'Mobile Phones',
@@ -57,6 +49,8 @@ class PaymentController extends ChangeNotifier {
       timeInSecForIosWeb: 4,
     );
     log(response.toString());
+    log(response.paymentId.toString());
+
     // orderProducts( 'ONLINE_PAYMENT');
     notifyListeners();
   }

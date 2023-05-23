@@ -310,7 +310,7 @@ class RequirementsTabScreen extends StatelessWidget {
                 ? const SizedBox()
                 : Column(mainAxisSize: MainAxisSize.min, children: [
                     Row(
-                      children: [
+                      children: const [
                         AppSize.kWidth20,
                       ],
                     ),

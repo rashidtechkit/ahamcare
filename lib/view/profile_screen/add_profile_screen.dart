@@ -38,15 +38,19 @@ class AddProfileScreen extends StatelessWidget {
                   AppSize.kHeight10,
                   ZoomIn(
                     child: CircleAvatar(
-                      radius: 80,
+                      radius: 70,
                       child: Stack(
                         alignment: Alignment.bottomRight,
                         clipBehavior: Clip.none,
                         children: [
                           const CircleAvatar(
-                            radius: 75,
-                            backgroundImage: AssetImage(
-                                "assets/images/pexels-pixabay-220453.jpg"),
+                            radius: 70,
+                            // backgroundImage: AssetImage(
+                            //     "assets/images/pexels-pixabay-220453.jpg"),
+                            child: Icon(
+                              Icons.person,
+                              size: 50,
+                            ),
                           ),
                           MaterialButton(
                             elevation: 10,
@@ -74,7 +78,8 @@ class AddProfileScreen extends StatelessWidget {
                   AppSize.kHeight20,
                   ZoomIn(
                     child: const TextfieldWidget(
-                      hintText: "Age",
+                      suffixIcon: Icon(Icons.date_range),
+                      hintText: "Dob",
                       obscureText: false,
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -120,6 +125,26 @@ class AddProfileScreen extends StatelessWidget {
                       contentPadding:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       suffixIcon: Icon(Icons.phone),
+                    ),
+                  ),
+                  AppSize.kHeight20,
+                  ZoomIn(
+                    child: const TextfieldWidget(
+                      hintText: "Adhar No",
+                      obscureText: false,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      suffixIcon: Icon(Icons.vertical_distribute_sharp ),
+                    ),
+                  ),
+                  AppSize.kHeight20,
+                  ZoomIn(
+                    child: const TextfieldWidget(
+                      hintText: "Pancard No",
+                      obscureText: false,
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      suffixIcon: Icon(Icons.dock_sharp),
                     ),
                   ),
                   AppSize.kHeight20,

@@ -26,7 +26,7 @@ class TextfieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 10,
+      elevation: 5,
       color: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       shadowColor: AppColors.kWhite.withOpacity(0.1),
@@ -44,7 +44,8 @@ class TextfieldWidget extends StatelessWidget {
           filled: true,
           hintText: hintText,
           hintStyle: hintStyle,
-          contentPadding: contentPadding,
+          contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+          // contentPadding: contentPadding,
           suffixIcon: suffixIcon,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),

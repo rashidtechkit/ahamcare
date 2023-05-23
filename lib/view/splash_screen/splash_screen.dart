@@ -1,3 +1,4 @@
+import 'package:ahamcare/controller/signup_controller/signup_controller.dart';
 import 'package:ahamcare/controller/splash_controller/splash_controller.dart';
 import 'package:ahamcare/utils/colors/colors.dart';
 import 'package:ahamcare/utils/styles/sizedbox.dart';
@@ -15,6 +16,8 @@ class SplashScreen extends StatelessWidget {
       ((timeStamp) {
         Provider.of<SplashController>(context, listen: false)
             .splashTimer(context);
+        Provider.of<SignUpController>(context, listen: false)
+            .getUserProfile(context);
       }),
     );
     return Scaffold(

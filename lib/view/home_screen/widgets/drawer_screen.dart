@@ -1,4 +1,5 @@
 import 'package:ahamcare/controller/login_controller/login_controller.dart';
+import 'package:ahamcare/controller/signup_controller/signup_controller.dart';
 import 'package:ahamcare/utils/colors/colors.dart';
 import 'package:ahamcare/utils/styles/sizedbox.dart';
 import 'package:ahamcare/view/about_screen/about_screen.dart';
@@ -19,6 +20,8 @@ class DrawerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile =
+        Provider.of<SignUpController>(context, listen: false).profiledetail;
     return ZoomDrawer(
       controller: z,
       borderRadius: 24,
@@ -50,19 +53,23 @@ class DrawerScreen extends StatelessWidget {
                 AppSize.kHeight10,
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     CircleAvatar(
                       backgroundColor: AppColors.kLightPink,
                       radius: 40,
                       child: CircleAvatar(
                         radius: 48,
-                        backgroundImage: AssetImage(
-                            'assets/images/pexels-pixabay-220453.jpg'),
+                        // backgroundImage: AssetImage(
+                        //     'assets/images/pexels-pixabay-220453.jpg'),
+                        child: Icon(
+                          Icons.person,
+                          size: 35,
+                        ),
                       ),
                     ),
                     AppSize.kHeight10,
                     TextWidget(
-                      name: "George",
+                      name: profile?.name ?? '',
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: AppColors.kWhite,
@@ -130,11 +137,10 @@ class DrawerScreen extends StatelessWidget {
                   },
                 ),
                 AppSize.kHeight30,
-
-                  Divider(
-                      color: AppColors.kWhite,
-                      endIndent: 30,
-                    ),
+                Divider(
+                  color: AppColors.kWhite,
+                  endIndent: 30,
+                ),
                 AppSize.kHeight20,
                 Consumer<Logincontroller>(
                   builder: (context, value, child) {

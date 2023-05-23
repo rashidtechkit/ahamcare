@@ -40,9 +40,7 @@ class GetDetailsController extends ChangeNotifier {
   bool isChecked = false;
   Map<int, bool> selectedFlag = {};
   bool isSelectionMode = false;
-  // List<bool> isCheckedList = [];
   AllDetailsModel? detailsList;
-
   List<SelectedItem> selecteditems = [];
 
   Future<void> getAllDetails(BuildContext context, String id) async {
@@ -52,8 +50,6 @@ class GetDetailsController extends ChangeNotifier {
       (value) {
         if (value != null) {
           detailsList = value;
-          // isCheckedList = List<bool>.filled(detailsList!.requirement.length,
-          // false); // Initialize isCheckedList with the appropriate length
           notifyListeners();
         } else {
           // Handle error case
@@ -68,18 +64,12 @@ class GetDetailsController extends ChangeNotifier {
   }
 
   void onChange(bool? data, int index, String id) {
-    int count = 0;
-    // isCheckedList[index] = data ?? false;
-
     final requirementIndex =
         detailsList!.requirement.indexWhere((element) => element.id == id);
-
     if (requirementIndex != -1) {
       final isExist = selecteditems.indexWhere((el) => el.id == id);
-
       if (isExist == -1) {
         final checkedItem = detailsList!.requirement[requirementIndex];
-
         selecteditems.add(
           SelectedItem(
             count: 0,
@@ -93,36 +83,16 @@ class GetDetailsController extends ChangeNotifier {
       }
       setTotalAmount();
     }
-
-    // if (detailsList?.requirement != null) {
-    //   for (var i = 0; i < detailsList!.requirement.length; i++) {
-    //     if (isCheckedList[i] == true) {
-    //       count += detailsList!.requirement[i].unitPrice;
-    //     }
-    //   }
-    // }
-
-    // totalAmount = count;
     notifyListeners();
   }
 
   void onChangeamount(int count, int index, String id) {
-    int newCount = 0;
-
-    // Ensure isCheckedList has a valid length
-    // if (isCheckedList.length > index) {
-    //   isCheckedList[index] = count != 0;
-    // }
-
     final requirementIndex =
         detailsList!.requirement.indexWhere((element) => element.id == id);
-
     if (requirementIndex != -1) {
       final isExist = selecteditems.indexWhere((el) => el.id == id);
-
       if (isExist == -1) {
         final checkedItem = detailsList!.requirement[requirementIndex];
-
         selecteditems.add(
           SelectedItem(
             count: count,
@@ -136,17 +106,6 @@ class GetDetailsController extends ChangeNotifier {
       }
       setTotalAmount();
     }
-
-    // if (detailsList?.requirement != null) {
-    //   for (var i = 0; i < detailsList!.requirement.length; i++) {
-    //     if (isCheckedList[i]) {
-    //       newCount += detailsList!.requirement[i].unitPrice * count;
-    //       notifyListeners();
-    //     }
-    //   }
-    // }
-
-    // totalAmount = newCount;
     notifyListeners();
   }
 
@@ -158,12 +117,14 @@ class GetDetailsController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void getActiveDonations() {
+  List<SelectedItem> getActiveDonations() {
     final activeDonations = selecteditems
         .where((element) => element.checked && element.count > 0)
         .toList();
 
     log(activeDonations.toString());
+
+    return activeDonations;
   }
 
   Future<void> addOrder({

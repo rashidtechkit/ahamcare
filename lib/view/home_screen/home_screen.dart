@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
         return Scaffold(
           appBar: appBarWidgetHome(
             "Hello!",
-            "George",
+            value.profiledetail?.name??'',
             context,
             IconButton(
               onPressed: () {
