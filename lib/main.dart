@@ -15,7 +15,6 @@ import 'package:ahamcare/view/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'view/common_ngo_screens/common_listview_screen/all_common_details_view/all_details_view.dart';
 
 void main() {
   runApp(const MyApp());

@@ -113,8 +113,8 @@ class SignUpController extends ChangeNotifier {
       return 'Please enter your password';
     } else if (value.length < 8) {
       return 'Password must have atleast 8 character';
-    } else if (value.length > 8) {
-      return 'Password exceeds 8 character';
+    } else if (value.length > 16) {
+      return 'Password exceeds 16 character';
     }
     return null;
   }

@@ -1,6 +1,7 @@
 import 'package:ahamcare/api/api_base_url.dart';
 import 'package:ahamcare/utils/colors/colors.dart';
 import 'package:ahamcare/utils/styles/sizedbox.dart';
+import 'package:ahamcare/view/store_events_screen/store_screen/payment_store.dart';
 import 'package:ahamcare/view/widgets/carousal_widget.dart';
 import 'package:ahamcare/view/widgets/text_widget.dart';
 import 'package:animate_do/animate_do.dart';
@@ -39,23 +40,23 @@ class StoreScreen extends StatelessWidget {
                           // CarousalWidget(
                           //   value: value,
                           // ),
-                          AppSize.kHeight20,
-                          Row(
-                            children: [
-                              AppSize.kWidth20,
-                              TextWidget(
-                                name: "Checkout Vouchers",
-                                fontSize: 16,
-                                color: AppColors.kBlack.withOpacity(0.4),
-                                fontWeight: FontWeight.w500,
-                              ),
-                              AppSize.kWidth5,
-                              Icon(
-                                Icons.swipe_up,
-                                color: AppColors.kBlack.withOpacity(0.4),
-                              ),
-                            ],
-                          ),
+                          // AppSize.kHeight20,
+                          // Row(
+                          //   children: [
+                          //     AppSize.kWidth20,
+                          //     TextWidget(
+                          //       name: "Checkout Vouchers",
+                          //       fontSize: 16,
+                          //       color: AppColors.kBlack.withOpacity(0.4),
+                          //       fontWeight: FontWeight.w500,
+                          //     ),
+                          //     AppSize.kWidth5,
+                          //     Icon(
+                          //       Icons.swipe_up,
+                          //       color: AppColors.kBlack.withOpacity(0.4),
+                          //     ),
+                          //   ],
+                          // ),
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: FadeInUp(
@@ -69,78 +70,112 @@ class StoreScreen extends StatelessWidget {
                                   mainAxisSpacing: 15,
                                 ),
                                 itemBuilder: (context, index) {
-                                  return Stack(
-                                    children: [
-                                      Material(
-                                        elevation: 10,
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Container(
-                                              height: 105,
-                                              decoration: BoxDecoration(
-                                                color: AppColors.kGrey,
-                                                image: DecorationImage(
-                                                  image: NetworkImage(
-                                                      '${ApiBaseUrl.cloudUrl}${value.storeList[index].photo}'),
-                                                ),
-                                                borderRadius:
-                                                    const BorderRadius.only(
-                                                  topLeft: Radius.circular(20),
-                                                  topRight: Radius.circular(10),
-                                                ),
-                                              ),
-                                            ),
-                                            TextWidget(
-                                              name: value.storeList[index].item,
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: SizedBox(
-                                                width: 130,
-                                                height: 30,
-                                                child: ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        AppColors.kPurple,
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) {
+                                          return ProductVeiw(
+                                            name: value.storeList[index].item,
+                                            price: value
+                                                .storeList[index].unitPrice,
+                                            img:
+                                                '${ApiBaseUrl.cloudUrl}${value.storeList[index].photo}',
+                                          );
+                                        },
+                                      ));
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Material(
+                                          elevation: 10,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Container(
+                                                height: 90,
+                                                decoration: BoxDecoration(
+                                                  color: AppColors.kGrey,
+                                                  image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        '${ApiBaseUrl.cloudUrl}${value.storeList[index].photo}'),
                                                   ),
-                                                  onPressed: () {},
-                                                  child: TextWidget(
-                                                    name:
-                                                        "Buy at ${value.storeList[index].totalPrice}",
-                                                    color: AppColors.kWhite,
+                                                  borderRadius:
+                                                      const BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(20),
+                                                    topRight:
+                                                        Radius.circular(10),
                                                   ),
                                                 ),
                                               ),
+                                              TextWidget(
+                                                name:
+                                                    value.storeList[index].item,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              TextWidget(
+                                                name:
+                                                    '₹ ${value.storeList[index].unitPrice.toString()}',
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              // Padding(
+                                              //   padding:
+                                              //       const EdgeInsets.all(8.0),
+                                              //   child: SizedBox(
+                                              //     width: 130,
+                                              //     height: 30,
+                                              //     child: ElevatedButton(
+                                              //       style:
+                                              //           ElevatedButton.styleFrom(
+                                              //         backgroundColor:
+                                              //             AppColors.kPurple,
+                                              //       ),
+                                              //       onPressed: () {
+                                              //         Navigator.of(context)
+                                              //             .push(MaterialPageRoute(
+                                              //           builder: (context) {
+                                              //             return CheckoutScreen(
+                                              //               index: index,
+                                              //             );
+                                              //           },
+                                              //         ));
+                                              //       },
+                                              //       child: TextWidget(
+                                              //         name: "Buy Now",
+                                              //         color: AppColors.kWhite,
+                                              //       ),
+                                              //     ),
+                                              //   ),
+                                              // ),
+                                            ],
+                                          ),
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 90,
+                                          decoration: const BoxDecoration(
+                                            color: AppColors.kOrange,
+                                            borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(20),
+                                              bottomRight: Radius.circular(20),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        height: 25,
-                                        width: 90,
-                                        decoration: const BoxDecoration(
-                                          color: AppColors.kOrange,
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(20),
-                                            bottomRight: Radius.circular(20),
+                                          ),
+                                          child: Center(
+                                            child: TextWidget(
+                                              name:
+                                                  "${value.storeList[index].remaining.toString()} ${value.storeList[index].unit.toString()} Left",
+                                              color: AppColors.kWhite,
+                                            ),
                                           ),
                                         ),
-                                        child: Center(
-                                          child: TextWidget(
-                                            name:
-                                                " ${value.storeList[index].remaining.toString()} / ${value.storeList[index].requirement.toString()},",
-                                            color: AppColors.kWhite,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   );
                                 },
                                 itemCount: value.storeList.length,
