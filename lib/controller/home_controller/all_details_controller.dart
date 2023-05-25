@@ -137,7 +137,7 @@ class GetDetailsController extends ChangeNotifier {
     notifyListeners();
 
     try {
-      await Future.delayed(Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 2));
       // ScaffoldMessenger.of(context).showSnackBar(
       //   SnackBar(content: Text('Order placed successfully')),
       // );
@@ -145,7 +145,7 @@ class GetDetailsController extends ChangeNotifier {
       log('Error adding order: $error');
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to place order')),
+        const SnackBar(content: Text('Failed to place order')),
       );
     }
 
