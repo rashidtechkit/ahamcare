@@ -20,7 +20,7 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // final productId = ModalRoute.of(context)?.settings.arguments as String;
     // final provider = Provider.of<StoreController>(context, listen: false)
-    //     .findById(productId);
+    // findById(productId);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Provider.of<StoreController>(context, listen: false).getStore(context);
     });
@@ -76,6 +76,7 @@ class StoreScreen extends StatelessWidget {
                                           .push(MaterialPageRoute(
                                         builder: (context) {
                                           return ProductVeiw(
+                                            id: value.storeList[index].id,
                                             name: value.storeList[index].item,
                                             price: value
                                                 .storeList[index].unitPrice,
@@ -128,7 +129,7 @@ class StoreScreen extends StatelessWidget {
                                               //   padding:
                                               //       const EdgeInsets.all(8.0),
                                               //   child: SizedBox(
-                                              //     width: 130,
+                                              //       width: 130,
                                               //     height: 30,
                                               //     child: ElevatedButton(
                                               //       style:

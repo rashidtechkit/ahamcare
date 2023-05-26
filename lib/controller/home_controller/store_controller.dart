@@ -8,6 +8,26 @@ class StoreController extends ChangeNotifier {
   int activeIndex = 0;
 
   List<StoreModel> storeList = [];
+  int count = 1;
+
+  void incrementCount() {
+    count++;
+    notifyListeners();
+  }
+
+  void decrementCount() {
+    if (count > 1) {
+      count--;
+      notifyListeners();
+    }
+  }
+
+  int gettotal(id) {
+    final StoreModel product =
+        storeList.firstWhere((element) => element.id == id);
+
+    return product.unitPrice * count;
+  }
 
   Future<void> getStore(context) async {
     isLoading = true;
