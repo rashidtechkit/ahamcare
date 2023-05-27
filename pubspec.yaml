@@ -45,7 +45,6 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   dio: ^5.1.0
   loading_animation_widget: ^1.2.0+4
-  65: ^0.8.7+1
   like_button: ^2.0.5
   google_maps_flutter: ^2.2.5
   location: ^4.4.0
@@ -56,6 +55,8 @@ dependencies:
   smooth_page_indicator: ^1.0.1
   http:
   pull_to_refresh: ^2.0.0
+  image_picker: ^0.8.7+5
+  slide_countdown: ^0.6.0
  
   
   

@@ -4,7 +4,6 @@ import 'package:ahamcare/model/social_model/get_social_model.dart';
 import 'package:ahamcare/model/social_model/like_post_model.dart';
 import 'package:ahamcare/model/social_model/post_social_page.dart';
 import 'package:ahamcare/services/social_service/add_post_service.dart';
-import 'package:ahamcare/services/social_service/like_post_service.dart';
 import 'package:ahamcare/services/social_service/social_service.dart';
 import 'package:ahamcare/utils/error_popup/snackbar.dart';
 import 'package:ahamcare/view/social_screen/widgets/create_post.dart';

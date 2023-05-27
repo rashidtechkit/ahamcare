@@ -1,6 +1,7 @@
 import 'package:ahamcare/controller/home_controller/event_controller.dart';
 import 'package:ahamcare/utils/colors/colors.dart';
 import 'package:ahamcare/utils/styles/sizedbox.dart';
+import 'package:ahamcare/view/store_events_screen/event_screen/event_view_screen.dart';
 import 'package:ahamcare/view/widgets/loading_widget.dart';
 import 'package:ahamcare/view/widgets/text_widget.dart';
 import 'package:animate_do/animate_do.dart';
@@ -68,33 +69,53 @@ class EventScreen extends StatelessWidget {
                                   physics: const BouncingScrollPhysics(),
                                   itemBuilder: (context, index) {
                                     return ZoomIn(
-                                      child: Card(
-                                        elevation: 10,
-                                        color: AppColors.kWhite,
-                                        surfaceTintColor: AppColors.kWhite,
-                                        child: ListTile(
-                                          
-                                          title: TextWidget(
-                                              name:
-                                                  value.eventList[index].event),
-                                          subtitle: TextWidget(
-                                            name: value
-                                                .eventList[index].totalTickets
-                                                .toString(),
-                                            color: AppColors.kBlack
-                                                .withOpacity(0.6),
-                                          ),
-                                          leading: Container(
-                                            height: 60,
-                                            width: 60,
-                                            decoration: BoxDecoration(
-                                              color: AppColors.kLightPink,
-                                              image: const DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: AssetImage(
-                                                      'assets/images/hand-with-mock-up-music-fest-bracelet-tickets_23-2149382309.png')),
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) {
+                                              return EventView(
+                                                starttime: value
+                                                    .eventList[index]
+                                                    .startDateTime,
+                                                endtime: value.eventList[index]
+                                                    .endDateTime,
+                                                moviename: value
+                                                    .eventList[index].event,
+                                                price: value
+                                                    .eventList[index].unitPrice,
+                                                    id: value.eventList[index].id,
+                                              );
+                                            },
+                                          ));
+                                        },
+                                        child: Card(
+                                          elevation: 10,
+                                          color: AppColors.kWhite,
+                                          surfaceTintColor: AppColors.kWhite,
+                                          child: ListTile(
+                                            title: TextWidget(
+                                                name: value
+                                                    .eventList[index].event),
+                                            subtitle: TextWidget(
+                                              name: value
+                                                  .eventList[index].totalTickets
+                                                  .toString(),
+                                              color: AppColors.kBlack
+                                                  .withOpacity(0.6),
+                                            ),
+                                            leading: Container(
+                                              height: 60,
+                                              width: 60,
+                                              decoration: BoxDecoration(
+                                                color: AppColors.kLightPink,
+                                                image: const DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: AssetImage(
+                                                        'assets/images/hand-with-mock-up-music-fest-bracelet-tickets_23-2149382309.png')),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
                                             ),
                                           ),
                                         ),

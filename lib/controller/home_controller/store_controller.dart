@@ -1,15 +1,20 @@
 import 'package:ahamcare/model/home_model/store_model.dart';
+import 'package:ahamcare/model/payment_model/payment_model.dart';
 import 'package:ahamcare/services/home_service/store_service.dart';
+import 'package:ahamcare/services/payment_id_service/payment_id_service.dart';
 import 'package:ahamcare/view/store_events_screen/store_screen/store_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class StoreController extends ChangeNotifier {
   bool isLoading = false;
   int activeIndex = 0;
 
   List<StoreModel> storeList = [];
-  int count = 1;
+  PaymentSuccessResponse? paymentSuccessResponse;
 
+  int count = 1;
+  EventPaymentmodel? paymentmodel;
   void incrementCount() {
     count++;
     notifyListeners();
@@ -36,6 +41,27 @@ class StoreController extends ChangeNotifier {
       (value) {
         if (value != null) {
           storeList = value;
+          notifyListeners();
+          isLoading = false;
+          notifyListeners();
+        } else {
+          isLoading = false;
+          notifyListeners();
+          return null;
+        }
+      },
+    );
+    isLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> getpaymentId(storeId, context, paymentId) async {
+    isLoading = true;
+    notifyListeners();
+    await PaymentIdService().paymentId(storeId, context, paymentId, count).then(
+      (value) {
+        if (value != null) {
+          paymentmodel = value;
           notifyListeners();
           isLoading = false;
           notifyListeners();

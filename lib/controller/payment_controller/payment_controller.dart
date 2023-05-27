@@ -6,6 +6,8 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class PaymentController extends ChangeNotifier {
   Razorpay razorpay = Razorpay();
+  String? paymentsid = '';
+
   // List<Product> products = [];
 
   Map<String, dynamic> options = {};
@@ -28,6 +30,8 @@ class PaymentController extends ChangeNotifier {
       razorpay.open(options);
       razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
           (PaymentSuccessResponse response) {
+        paymentsid = response.paymentId!;
+        notifyListeners();
         handlePaymentSuccess(response);
       });
       razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,

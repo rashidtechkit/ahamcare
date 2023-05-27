@@ -16,6 +16,8 @@ class ApiEndpoints {
 
   // Payment Endpoints.........................................
   static String donation = '/api/v1/user/donation';
+  static String paymentId = '/api/v1/user/storeDonation';
+  static String eventpayment = '/api/v1/user/eventDonation';
 
   //profile Endpoints..........................................
   static String profile = '/api/v1/user/user';

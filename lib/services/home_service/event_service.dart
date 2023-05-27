@@ -14,6 +14,7 @@ class EventService {
         ApiBaseUrl.baseUrl + ApiEndpoints.event,
       );
       if (response.statusCode == 200 || response.statusCode == 201) {
+        log(response.data.toString());
         final List<EventModel> model =
             (response.data as List).map((e) => EventModel.fromJson(e)).toList();
         log(model.toString());

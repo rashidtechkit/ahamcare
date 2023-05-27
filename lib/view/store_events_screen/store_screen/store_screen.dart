@@ -1,15 +1,12 @@
 import 'package:ahamcare/api/api_base_url.dart';
 import 'package:ahamcare/utils/colors/colors.dart';
-import 'package:ahamcare/utils/styles/sizedbox.dart';
 import 'package:ahamcare/view/store_events_screen/store_screen/payment_store.dart';
-import 'package:ahamcare/view/widgets/carousal_widget.dart';
 import 'package:ahamcare/view/widgets/text_widget.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:ahamcare/controller/home_controller/store_controller.dart';
 import 'package:ahamcare/view/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
-import 'package:readmore/readmore.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
